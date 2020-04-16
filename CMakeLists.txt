@@ -9,6 +9,7 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 
 add_executable(hw2-m10815822
     src/hw2-m10815822.cpp
+    src/projectivegeometry.cpp
 )
 
 target_link_libraries(hw2-m10815822 ${OpenCV_LIBS})

@@ -2,5 +2,8 @@
 
 int main(int argc, char const *argv[])
 {
-    
+    ProjectiveGeometry project2D;
+    project2D.createSlave();
+
+    return 0;
 }

@@ -1,11 +1,19 @@
 #include "hw2-m10815822.hpp"
 
+
 void ProjectiveGeometry::createSlave()
 {
-    
+    cv::Mat img1 = cv::imread("First.JPG");
+    cv::Mat mask = cv::imread("FirstMASK.bmp");
+    cv::Mat slave;
+    cv::bitwise_or(img1, mask, slave);
+    //cv::imshow("Slave", slave);
+    //cv::waitKey(0);
+    cv::imwrite("Slave.JPG",slave);    
+
 }
 
-void ProjectiveGeometry::readCorrespondencesParams()
+/*void ProjectiveGeometry::readCorrespondencesParams()
 {
     std::ifstream paramFile("correspondences_params.txt");
     std::string line;
@@ -36,3 +44,4 @@ void ProjectiveGeometry::exportJPGFile()
 {
 
 }
+*/
