@@ -1,5 +1,6 @@
 #include "hw2-m10815822.hpp"
-
+#include <iostream>
+#include <fstream>
 
 void ProjectiveGeometry::createSlave()
 {
@@ -13,7 +14,7 @@ void ProjectiveGeometry::createSlave()
 
 }
 
-/*void ProjectiveGeometry::readCorrespondencesParams()
+void ProjectiveGeometry::readCorrespondencesParams()
 {
     std::ifstream paramFile("correspondences_params.txt");
     std::string line;
@@ -22,11 +23,25 @@ void ProjectiveGeometry::createSlave()
     {
         if (line.find("#First") != std::string::npos)
         {
-            continue;
+            double First_CorrespondencesValue[3];
+            for (int i = 0; i < 3; i++)
+            {
+                std::getline(paramFile, line);
+                std::istringstream iss(line);
+                iss >> First_CorrespondencesValue[i * 3 + 0] >> First_CorrespondencesValue[i * 3 + 1] >> First_CorrespondencesValue[i * 3 + 2];
+            }
+            First.push_back(cv::Mat(1, 3, CV_64F, First_CorrespondencesValue).clone());
         }
         else if (line.find("#Second") != std::string::npos)
         {
-            continue;
+            double Second_CorrespondencesValue[3];
+            for (int i = 0; i < 3; i++)
+            {
+                std::getline(paramFile, line);
+                std::istringstream iss(line);
+                iss >> Second_CorrespondencesValue[i * 3 + 0] >> Second_CorrespondencesValue[i * 3 + 1] >> Second_CorrespondencesValue[i * 3 + 2];
+            }
+            Second.push_back(cv::Mat(1, 3, CV_64F, Second_CorrespondencesValue).clone());
         }
         else
         {
@@ -35,7 +50,7 @@ void ProjectiveGeometry::createSlave()
     }
 }
 
-void ProjectiveGeometry::HomographyMat()
+/*void ProjectiveGeometry::HomographyMat()
 {
 
 }
