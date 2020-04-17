@@ -3,7 +3,7 @@
 int main(int argc, char const *argv[])
 {
     ProjectiveGeometry project2D;
-    //project2D.createSlave();
+    project2D.createSlave();
     project2D.readCorrespondencesParams();
     project2D.HomographyMat();
     project2D.InpainWhiteRegion();

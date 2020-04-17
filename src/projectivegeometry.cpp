@@ -37,6 +37,7 @@ void ProjectiveGeometry::readCorrespondencesParams()
 
 void ProjectiveGeometry::HomographyMat()
 {
+    
     cv::Mat im_src = cv::imread("Second.JPG");
     cv::Mat im_dst = cv::imread("Slave.JPG");
     cv::Mat h = cv::findHomography(list_Second, list_First);
@@ -66,11 +67,21 @@ void ProjectiveGeometry::CombineIMG()
 {
     cv::Mat slave = cv::imread("Slave.JPG");
     cv::Mat inpain = cv::imread("Inpain.JPG");
-    cv::Mat combine;
-
-    for (int i=0; )
-    //cv::bitwise_and(slave, inpain, combine);
-    cv::imshow("Combine", combine);
-    cv::waitKey();
-    cv::imwrite("M10815822.JPG",combine);    
+    for (int x = 0; x < slave.cols; x++)
+    {
+        for (int y = 0; y < slave.rows; y++)
+        {
+            // Read pixel x,y from Inpain
+            cv::Vec3b tmp = inpain.at<cv::Vec3b>(y, x);
+            if (tmp.val[0] > 25 || tmp.val[1] > 25 || tmp.val[2] > 25)
+            {
+                // Modify pixel in Slave to the value of pixel in Inpain
+                slave.at<cv::Vec3b>(y, x) = tmp;
+            }
+        }
+    }
+    cv::imwrite("M10815822.JPG",slave);
+    cv::imshow("S", slave);
+    
+    cv::waitKey(); 
 }
