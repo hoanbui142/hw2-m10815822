@@ -7,21 +7,21 @@
 
 #include "opencv2/opencv.hpp"
 
-/*struct Coord2dPoint
+struct Coord2dPoint
 {
-    int x;
-    int y;
-    int z = 1;
-}; */
+    float x;
+    float y;
+    float z = 1;
+};
 class ProjectiveGeometry
 {
 public:
-    //ProjectiveGeometry (std::string CorrespondencesViewDataDir): correspondencesViewDataDir (CorrespondencesViewDataDir)
-    std::vector<cv::Mat> First;
-    std::vector<cv::Mat> Second;
+    std::vector<cv::Point2f> list_First;
+    std::vector<cv::Point2f> list_Second;
 
     void createSlave();
     void readCorrespondencesParams();
-    /*void HomographyMat();
-    void exportJPGFile(std::string JPGFileURL);*/
+    void HomographyMat();
+    void InpainWhiteRegion();
+    void CombineIMG();
 };
